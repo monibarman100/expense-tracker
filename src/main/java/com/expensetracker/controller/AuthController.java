@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.expensetracker.dto.LoginRequestDTO;
 import com.expensetracker.dto.UserRequestDTO;
 import com.expensetracker.service.UserService;
 
@@ -24,7 +25,11 @@ public class AuthController {
 		
 		return ResponseEntity.ok(userService.registerUser(request));
 		
-		
+	}
+	
+	@PostMapping("/login")
+	public ResponseEntity<String> login(@RequestBody LoginRequestDTO request){
+		return ResponseEntity.ok(userService.loginUser(request));
 	}
 
 }
