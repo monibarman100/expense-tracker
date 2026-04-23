@@ -1,14 +1,16 @@
 package com.expensetracker.service;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.expensetracker.config.AppConfig;
+
 import com.expensetracker.dto.LoginRequestDTO;
 import com.expensetracker.dto.UserRequestDTO;
 import com.expensetracker.entity.User;
 import com.expensetracker.repository.UserRepository;
+import com.expensetracker.utility.JwtUtil;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -18,6 +20,9 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	
+	@Autowired
+	private JwtUtil jwtUtil;
 	
 	@Override
 	public String registerUser(UserRequestDTO request) {
@@ -48,7 +53,9 @@ public class UserServiceImpl implements UserService {
 			throw new RuntimeException("Invalid Password");
 		}
 			
-		return "Login Successfully";
+		//return "Login Successfully";
+		
+		return jwtUtil.generateToken(user.getEmail());
 	}
 
 }
