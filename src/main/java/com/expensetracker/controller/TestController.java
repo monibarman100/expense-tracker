@@ -12,5 +12,10 @@ public class TestController {
 	public String test() {
 		return "Project is running";
 	}
+	
+	@GetMapping("/hello")
+	public String securedAPI() {
+		return "Hello secured API";
+	}
 
 }
