@@ -21,3 +21,8 @@ Day 1:
 - Generate JWT token on login
 - Secure APIs using token
 - Git Issues resolved
+
+- Day 5:
+- Validate JWT on every request
+- Extract user from token
+- Secure APIs(only logged-in users can access)
