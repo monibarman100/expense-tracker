@@ -26,3 +26,7 @@ Day 1:
 - Validate JWT on every request
 - Extract user from token
 - Secure APIs(only logged-in users can access)
+
+- Day 6:
+- Access Logged-in user details in API
+- Made user sepecific API
