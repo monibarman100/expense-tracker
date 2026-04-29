@@ -21,11 +21,10 @@ public class User {
 	private String email;
 	private String password;
 	
-	
-	public Long getId() {
+	public Long getid() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setid(Long id) {
 		this.id = id;
 	}
 	public String getName() {
