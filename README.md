@@ -30,3 +30,7 @@ Day 1:
 - Day 6:
 - Access Logged-in user details in API
 - Made user sepecific API
+
+- Day 7:
+- User can add expenses
+- User can view expenses
