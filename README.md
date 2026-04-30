@@ -34,3 +34,7 @@ Day 1:
 - Day 7:
 - User can add expenses
 - User can view expenses
+
+- Day 8:
+- Check ownership
+- Update/Delete expense with ownership check
