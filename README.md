@@ -38,3 +38,9 @@ Day 1:
 - Day 8:
 - Check ownership
 - Update/Delete expense with ownership check
+
+- Day 9:
+- Added Validation
+- Added Global Exception Handling
+
+
