@@ -2,14 +2,24 @@ package com.expensetracker.dto;
 
 import java.time.LocalDate;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 public class ExpenseDTO {
 	
 	private Long expense_id;
-	private String title;
-	private Double amount;
-	private String category;
-	private LocalDate date;
 	
+	@NotBlank(message="Title is required")
+	private String title;
+	
+	@NotNull(message="Amount is required")
+	private Double amount;
+	
+	@NotBlank(message="Category is required")
+	private String category;
+	
+	@NotNull(message="Date is required")
+	private LocalDate date;
 	
 	public Long getExpense_id() {
 		return expense_id;

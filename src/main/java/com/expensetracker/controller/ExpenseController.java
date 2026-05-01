@@ -16,6 +16,8 @@ import com.expensetracker.dto.ExpenseDTO;
 import com.expensetracker.entity.Expense;
 import com.expensetracker.service.ExpenseService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/expenses")
 public class ExpenseController {
@@ -24,7 +26,7 @@ public class ExpenseController {
 	private ExpenseService expenseService;
 	
 	@PostMapping
-	public String addExpense(@RequestBody ExpenseDTO request) {
+	public String addExpense(@Valid @RequestBody ExpenseDTO request) {
 		
 		return expenseService.addExpense(request);
 		
