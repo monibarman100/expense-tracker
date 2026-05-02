@@ -3,6 +3,9 @@ package com.expensetracker.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -45,7 +48,7 @@ public class ExpenseServiceImpl implements ExpenseService {
 		return "Expense added successfully";
 	}
 
-	@Override
+	/*@Override
 	public List<Expense> getUserExpenses() {
 		
 		String email = (String) SecurityContextHolder
@@ -57,7 +60,7 @@ public class ExpenseServiceImpl implements ExpenseService {
 				.orElseThrow(() -> new RuntimeException("User not found"));
 				
 		return expenseRepository.findByUserId(user.getid());
-	}
+	}*/
 
 	@Override
 	public String updateExpense(Long id, ExpenseDTO request) {
@@ -110,4 +113,22 @@ public class ExpenseServiceImpl implements ExpenseService {
 		return "Expense deleted successfully";
 	}
 
+	@Override
+	public Page<Expense> getExpensesByCategory(String category, int page, int size) {
+	
+		
+		String email = (String) SecurityContextHolder
+				.getContext()
+				.getAuthentication()
+				.getPrincipal();
+		
+		User user = userRepository.findByEmail(email)
+				.orElseThrow(() -> new RuntimeException("User not found"));
+				
+		Pageable pageable = PageRequest.of(page, size);
+		
+		return expenseRepository.findByUserIdAndCategory(user.getid(), category, pageable);
+	}
+
+	
 }
