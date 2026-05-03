@@ -43,4 +43,8 @@ Day 1:
 - Added Validation
 - Added Global Exception Handling
 
+- Day 10:
+- Implemented Filtering
+- And implemented Pagination
+
 
