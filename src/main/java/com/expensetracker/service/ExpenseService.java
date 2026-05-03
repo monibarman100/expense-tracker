@@ -19,6 +19,8 @@ public interface ExpenseService {
 
 	//Page<Expense> getUserExpenses(int page, int size);
 
-	Page<Expense> getExpensesByCategory(String category, int page, int size);
+	//Page<Expense> getExpensesByCategory(String category, int page, int size);
+
+	Page<Expense> getFilteredExpenses(String category, int page, int size, String sortBy, String direction);
 
 }

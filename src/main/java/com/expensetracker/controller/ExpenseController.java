@@ -46,9 +46,11 @@ public class ExpenseController {
 	public Page<Expense> getExpenses(
 			String category,
 			@RequestParam(defaultValue = "0") int page,
-			@RequestParam(defaultValue = "3") int size){
+			@RequestParam(defaultValue = "3") int size,
+			@RequestParam(defaultValue = "date") String sortBy,
+			@RequestParam(defaultValue = "desc") String direction){
 		
-		return expenseService.getExpensesByCategory(category,page, size);
+		return expenseService.getFilteredExpenses(category,page, size, sortBy, direction);
 	}
 	
 	@PutMapping("/{id}")
