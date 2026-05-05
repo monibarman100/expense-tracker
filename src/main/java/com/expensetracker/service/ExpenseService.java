@@ -1,6 +1,7 @@
 package com.expensetracker.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.data.domain.Page;
 
@@ -11,7 +12,7 @@ public interface ExpenseService {
 
 	String addExpense(ExpenseDTO request);
 
-	//List<Expense> getUserExpenses();
+	List<Expense> getUserExpenses();
 	
 	String updateExpense(Long id, ExpenseDTO request);
 
@@ -22,5 +23,11 @@ public interface ExpenseService {
 	//Page<Expense> getExpensesByCategory(String category, int page, int size);
 
 	Page<Expense> getFilteredExpenses(String category, int page, int size, String sortBy, String direction);
+
+	Double getTotalExpense();
+
+	Map<String, Double> getCategoryReport();
+
+	Map<Integer, Double> getMonthlyReport();
 
 }

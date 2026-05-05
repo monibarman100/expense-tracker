@@ -1,7 +1,7 @@
 package com.expensetracker.controller;
 
 import java.util.List;
-
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -35,12 +35,12 @@ public class ExpenseController {
 		
 	}
 	
-	/*@GetMapping
+	@GetMapping
 	public List<Expense> getExpenses(){
 		
 		return expenseService.getUserExpenses();
 		
-	}*/
+	}
 	
 	@GetMapping("/filter")
 	public Page<Expense> getExpenses(
@@ -65,6 +65,26 @@ public class ExpenseController {
 		
 		return expenseService.deleteMapping(id);
 		
+	}
+	
+	@GetMapping("/total")
+	public Double getTotalExpense() {
+		
+		return expenseService.getTotalExpense();
+	
+	}
+	
+	@GetMapping("/report/category")
+	public Map<String,Double> getExpenseByCategory(){
+		
+		return expenseService.getCategoryReport();
+		
+	}
+	
+	@GetMapping("/report/monthly")
+	public Map<Integer,Double> getExpensesMonthly(){
+		
+		return expenseService.getMonthlyReport();
 	}
 
 }

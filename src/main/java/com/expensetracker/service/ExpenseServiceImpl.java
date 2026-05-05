@@ -1,6 +1,10 @@
 package com.expensetracker.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -49,7 +53,7 @@ public class ExpenseServiceImpl implements ExpenseService {
 		return "Expense added successfully";
 	}
 
-	/*@Override
+	@Override
 	public List<Expense> getUserExpenses() {
 		
 		String email = (String) SecurityContextHolder
@@ -61,7 +65,7 @@ public class ExpenseServiceImpl implements ExpenseService {
 				.orElseThrow(() -> new RuntimeException("User not found"));
 				
 		return expenseRepository.findByUserId(user.getid());
-	}*/
+	}
 
 	@Override
 	public String updateExpense(Long id, ExpenseDTO request) {
@@ -149,6 +153,79 @@ public class ExpenseServiceImpl implements ExpenseService {
 		
 		return expenseRepository.findByUserIdAndCategory(user.getid(), category, pageable);
 	}
+
+	@Override
+	public Double getTotalExpense() {
+		
+		String email = (String) SecurityContextHolder
+				.getContext()
+				.getAuthentication()
+				.getPrincipal();
+		
+		User user = userRepository.findByEmail(email)
+				.orElseThrow(() -> new RuntimeException("User not found"));
+				
+		return expenseRepository.getTotalExpenseByUserId(user.getid());
+	}
+
+	@Override
+	public Map<String, Double> getCategoryReport() {
+		
+		String email = (String) SecurityContextHolder
+				.getContext()
+				.getAuthentication()
+				.getPrincipal();
+		
+		User user = userRepository.findByEmail(email)
+				.orElseThrow(() -> new RuntimeException("User not found"));
+		
+		List<Object[]> results = expenseRepository.getCategoryWiseReport(user.getid());
+		
+		/*Map<String,Double> report = new HashMap<>();
+		
+		for(Object[] row : results)
+			report.put((String) row[0], (Double) row[1]);*/
+		
+		Map<String,Double> report = results.stream()
+				.collect(Collectors.toMap(
+						row -> (String) row[0],
+						row -> (Double) row[1]
+								
+				));				
+		
+		return report;
+		
+	}
+
+	@Override
+	public Map<Integer, Double> getMonthlyReport() {
+		
+		String email = (String) SecurityContextHolder
+				.getContext()
+				.getAuthentication()
+				.getPrincipal();
+		
+		User user = userRepository.findByEmail(email)
+				.orElseThrow(() -> new RuntimeException("User not found"));
+		
+		List<Object[]> results = expenseRepository.getMonthlyReport(user.getid());
+		
+	/*	Map<Integer,Double> report = new HashMap<>();
+		
+		for(Object[] row : results) {
+			report.put((Integer) row[0], (Double) row[1]);
+		}*/
+		
+		Map<Integer,Double> report = results.stream()
+				.collect(Collectors.toMap(
+						row -> (Integer) row[0],
+						row -> (Double) row[1]
+					));			
+								
+		return report;
+	}
+
+	
 
 	
 }
