@@ -51,4 +51,8 @@ Day 1:
 - Implemented Sorting
 - Implemented advanced filtering
 
+- Day 11:
+- Implemented Reports and Analytics
+- Can view Category and Monthly wise reports
+
 
