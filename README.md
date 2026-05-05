@@ -47,4 +47,8 @@ Day 1:
 - Implemented Filtering
 - And implemented Pagination
 
+- Day 10:
+- Implemented Sorting
+- Implemented advanced filtering
+
 
